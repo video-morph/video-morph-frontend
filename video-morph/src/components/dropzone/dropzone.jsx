@@ -1,12 +1,20 @@
-import React from 'react'
-import {useDropzone} from 'react-dropzone'
+"use client"
+
+import React from 'react';
+import ReactDropzone from 'react-dropzone';
 
 const Dropzone = () => {
   return (
-    <ReactDropzone>dropzone</ReactDropzone>
-  )
+    <ReactDropzone>
+      {({ getRootProps, getInputProps }) => (
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          <p>Dropzone</p>
+        </div>
+      )}
+    </ReactDropzone>
+  );
 }
 
-export default Dropzone
-
+export default Dropzone;
 

@@ -1,4 +1,7 @@
+"use client"
+
 import Image from "next/image";
+import Dropzone from "@/components/dropzone/Dropzone";
 
 export default function Home() {
   return (
@@ -10,7 +13,7 @@ export default function Home() {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         </p>
       </div>
-      
+      <Dropzone />
     </main>
   );
 }
