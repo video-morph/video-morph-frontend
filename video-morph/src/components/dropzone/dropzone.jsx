@@ -1,12 +1,12 @@
 import React from 'react'
 import {useDropzone} from 'react-dropzone'
 
-const dropzone = () => {
+const Dropzone = () => {
   return (
     <ReactDropzone>dropzone</ReactDropzone>
   )
 }
 
-export default dropzone
+export default Dropzone
 
 

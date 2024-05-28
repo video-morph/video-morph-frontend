@@ -10,6 +10,7 @@ export default function Home() {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         </p>
       </div>
+      
     </main>
   );
 }
