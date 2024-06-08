@@ -2,12 +2,12 @@
 
 Video morph is tool that allows users to transcode videos, enabling them adjust resolutions and also convert videos from one form to another to ensure compatibility across different devices.
 
-Project Summary 
- 
 
+
+## Project Summary 
+ 
                    The goal of this project is to develop a web-based platform that allows users to transcode their videos into  various formats and resolutions optimized for different devices and platforms (web, mobile, smart TVs, etc.).
 
- 
 
 To achieve this, the main goal is to handle everything involved in transcoding which are:
 
@@ -17,10 +17,14 @@ To achieve this, the main goal is to handle everything involved in transcoding w
 
 ·         Transizing: changing the size to ensure compatibility and adaptability
 
-·         Transrating: changing the bitrates, to ensure adaptability whenever there are changes in bandwidth
+·         Transrating: changing the bitrates, to ensure adaptability whenever there are changes in bandwidth.
 
-Project Specification
- 
+
+
+
+## Project Specification
+
+
 
 ·         Stack : JavaScript (Frontend and backend)
 
@@ -28,11 +32,11 @@ Project Specification
 
 ·         All states must be handled efficiently
 
-·         Handle Authentication effectively (sign in, signup and sign out) and also implement Google authentication
+·         Handle Authentication effectively (sign in, signup and sign out) and also implement Google authentication.
 
  
 
-Functional Requirements
+## Functional Requirements
  
 
 Use of the FFMPEG software to transcode videos from one format inputted by users to their desired formats in order to ensure that regardless of their bandwidth, they always have access to videos.
@@ -56,7 +60,8 @@ This section should also contain details on one or more of the following:
 
  
 
-Technical requirements needed for this project include
+
+## Technical requirements needed for this project include
 
  
 
@@ -76,7 +81,10 @@ Technical requirements needed for this project include
 
 ·         Implementation of best practices for securing user data, authentication tokens and API endpoints
 
-Limitations
+
+
+
+## Limitations
 
  
 
