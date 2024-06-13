@@ -1,27 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+import { FFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
-const ffmpeg = createFFmpeg({ log: true });
+let ffmpeg;
+
+if (typeof FFmpeg !== 'undefined') {
+  ffmpeg = new FFmpeg({ log: true });
+}
 
 export const loadFFmpeg = createAsyncThunk('transcode/loadFFmpeg', async () => {
-  await ffmpeg.load();
-  return true;
+  if (ffmpeg) {
+    await ffmpeg.load();
+    return true;
+  }
+  throw new Error('FFmpeg can only be loaded in a browser environment.');
 });
 
-export const transcodeVideo = createAsyncThunk(
-  'transcode/transcodeVideo',
-  async ({ video, format }, { rejectWithValue }) => {
-    try {
-      ffmpeg.FS('writeFile', 'input', await fetchFile(video));
-      await ffmpeg.run('-i', 'input', `output.${format}`);
-      const data = ffmpeg.FS('readFile', `output.${format}`);
-
-      return URL.createObjectURL(new Blob([data.buffer], { type: `video/${format}` }));
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
+export const transcodeVideo = createAsyncThunk('transcode/transcodeVideo', async ({ video, format }) => {
+  if (!ffmpeg) {
+    throw new Error('FFmpeg is not available. Ensure it is loaded before transcoding.');
   }
-);
+
+  const reader = new FileReader();
+  reader.readAsArrayBuffer(video);
+  return new Promise((resolve, reject) => {
+    reader.onloadend = async () => {
+      ffmpeg.FS('writeFile', 'input.mp4', new Uint8Array(reader.result));
+      await ffmpeg.run('-i', 'input.mp4', `output.${format}`);
+      const data = ffmpeg.FS('readFile', `output.${format}`);
+      const url = URL.createObjectURL(new Blob([data.buffer], { type: `video/${format}` }));
+      resolve(url);
+    };
+    reader.onerror = (error) => reject(error);
+  });
+});
 
 const transcodeSlice = createSlice({
   name: 'transcode',
@@ -29,20 +40,19 @@ const transcodeSlice = createSlice({
     ready: false,
     video: null,
     output: null,
-    progress: 0,
-    error: null,
     loading: false,
+    error: null,
   },
   reducers: {
     setVideo: (state, action) => {
       state.video = action.payload;
     },
     resetState: (state) => {
+      state.ready = false;
       state.video = null;
       state.output = null;
-      state.progress = 0;
-      state.error = null;
       state.loading = false;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -52,7 +62,6 @@ const transcodeSlice = createSlice({
       })
       .addCase(transcodeVideo.pending, (state) => {
         state.loading = true;
-        state.progress = 0;
         state.error = null;
       })
       .addCase(transcodeVideo.fulfilled, (state, action) => {
@@ -61,12 +70,7 @@ const transcodeSlice = createSlice({
       })
       .addCase(transcodeVideo.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(transcodeVideo, (state, action) => {
-        ffmpeg.setProgress(({ ratio }) => {
-          state.progress = ratio * 100;
-        });
+        state.error = action.error.message;
       });
   },
 });
@@ -74,3 +78,4 @@ const transcodeSlice = createSlice({
 export const { setVideo, resetState } = transcodeSlice.actions;
 
 export default transcodeSlice.reducer;
+
