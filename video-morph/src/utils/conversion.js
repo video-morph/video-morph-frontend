@@ -2,12 +2,12 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 
 function getFileExtension(file_name) {
-  const regex = /(?:\.([^.]+))?$/; // Matches the last dot and everything after it
+  const regex = /(?:\.([^.]+))?$/; 
   const match = regex.exec(file_name);
   if (match && match[1]) {
     return match[1];
   }
-  return ""; // No file extension found
+  return ""; 
 }
 
 function removeFileExtension(file_name) {
@@ -15,7 +15,7 @@ function removeFileExtension(file_name) {
   if (lastDotIndex !== -1) {
     return file_name.slice(0, lastDotIndex);
   }
-  return file_name; // No file extension found
+  return file_name; 
 }
 
 export default async function convert(ffmpeg, action) {
@@ -27,9 +27,9 @@ export default async function convert(ffmpeg, action) {
   const output = removeFileExtension(file_name) + "." + to;
   ffmpeg.writeFile(input, await fetchFile(file));
 
-  // FFmpeg commands
+
   let ffmpeg_cmd = [];
-  // 3gp video
+ 
   if (to === "3gp") {
     ffmpeg_cmd = [
       "-i",
@@ -56,7 +56,6 @@ export default async function convert(ffmpeg, action) {
     ffmpeg_cmd = ["-i", input, output];
   }
 
-  // Execute command
   await ffmpeg.exec(ffmpeg_cmd);
 
   const data = await ffmpeg.readFile(output);
