@@ -4,6 +4,8 @@ Video morph is a tool that allows users to transcode videos, enabling them adjus
 
 
 
+
+
 ## Project Summary 
  
 The goal of this project is to develop a web-based platform that allows users to transcode their videos into  various formats and resolutions optimized for different devices and platforms (web, mobile, smart TVs, etc.).
@@ -22,6 +24,8 @@ To achieve this, the main goal is to handle everything involved in transcoding w
 
 
 
+
+
 ## Project Specification
 
 
@@ -33,6 +37,8 @@ To achieve this, the main goal is to handle everything involved in transcoding w
 ·         All states must be handled efficiently
 
 ·         Handle Authentication effectively (sign in, signup and sign out) and also implement Google authentication.
+
+
 
  
 
@@ -61,6 +67,8 @@ This section should also contain details on one or more of the following:
  
 
 
+
+
 ## Technical requirements needed for this project include
 
  
@@ -80,6 +88,8 @@ This section should also contain details on one or more of the following:
 ·         Logging mechanism for tracking system activities, errors and user actions
 
 ·         Implementation of best practices for securing user data, authentication tokens and API endpoints
+
+
 
 
 
