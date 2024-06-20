@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import Dropzone from "@/components/dropzone/Dropzone";
+import Dropzone from "@/components/dropzone/dropzone";
 
 export default function Home() {
   return (
