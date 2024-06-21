@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import Dropzone from "./components/dropzone/dropzone";
+import Dropzone from "../components/dropzone/dropzone";
 
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
         <div className="w-[80%] flex flex-col justify-center items-center">
           <p className="text-4xl">Convert your Video Format Online Easily</p>
           <p className="text-center">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam,
           </p>

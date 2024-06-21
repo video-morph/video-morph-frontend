@@ -10,3 +10,4 @@ export default async function loadFfmpeg() {
   });
   return ffmpeg;
 }
+
