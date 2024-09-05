@@ -3,8 +3,7 @@
 Video morph is a tool that allows users to transcode videos, enabling them adjust resolutions and also convert videos from one form to another to ensure compatibility across different devices.
 
 ## Project Summary 
- 
-The goal of this project is to develop a web-based platform that allows users to transcode their videos into  various formats and resolutions optimized for different devices and platforms (web, mobile, smart TVs, etc.).
+This project is part of Techstarta Sparklab Program. The goal of this project is to develop a web-based platform that allows users to transcode their videos into  various formats and resolutions optimized for different devices and platforms (web, mobile, smart TVs, etc.).
 
 
 To achieve this, the main goal is to handle everything involved in transcoding which are:
